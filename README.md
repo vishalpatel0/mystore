@@ -1,5 +1,4 @@
 # React + Vite
-Got it, here's the README file without the license section:
 
 ```markdown
 # Project Setup Instructions
