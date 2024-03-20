@@ -1,6 +1,5 @@
 # React + Vite
 
-```markdown
 # Project Setup Instructions
 
 ## Cloning the Repository
@@ -35,6 +34,3 @@ If you have an API folder in this project that you want to move to an XAMPP serv
 1. Launch the XAMPP Control Panel. You can find it in the XAMPP installation directory.
 2. Start the Apache and MySQL services by clicking on the "Start" button next to their respective entries.
 3. Once started, Apache will serve your web files (including your API), and MySQL will provide the database functionality.
-```
-
-Save this content in a file named `README.md` in the root directory of your project. This README provides comprehensive instructions for setting up the project, including cloning, installing dependencies, accessing the API, and starting XAMPP servers.
