@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useAPI } from "../api/loginAPI";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const { reporting, callAPI } = useAPI();
+
+  const navigate = useNavigate();
+
   const [myform, setMyform] = useState({
     username: "vishal@gmail.com",
     password: "",
   });
-
-  const { data, setDeta, callAPI } = useAPI();
-
-  const navigate = useNavigate();
 
   async function LoginSubmit(e) {
     e.preventDefault();
@@ -18,17 +19,19 @@ const Login = () => {
   }
 
   useEffect(() => {
+    // check token in local Storage
     const user_token = localStorage.getItem("user_token");
     if (user_token) {
-      navigate("/");
+      navigate("/"); // page
     }
 
-    if (data.status == "ok") {
-      if (data.data.token) {
-        localStorage.setItem("user_token", data.data.token);
+    // save token in local Storage
+    if (reporting.status == "ok") {
+      if (reporting.data.token) {
+        localStorage.setItem("user_token", reporting.data.token);
       }
     }
-  }, [data]);
+  }, [reporting]);
 
   return (
     <div>
@@ -38,6 +41,7 @@ const Login = () => {
 
           <div className="col-6 card shadow mt-4 p-4">
             <h3 className="text-center mb-4">Login</h3>
+
             <form onSubmit={LoginSubmit}>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -71,10 +75,13 @@ const Login = () => {
               </div>
 
               <button type="submit" className="btn btn-primary">
-                {data.status == "sending" ? "sending .... " : "Click for Login"}
+                {reporting.status == "sending"
+                  ? "sending .... "
+                  : "Click for Login"}
               </button>
 
-              {data.status == "error" ? data.msg : ""}
+              {console.log(reporting)}
+              {reporting.status == "error" ? reporting.msg : ""}
             </form>
           </div>
         </div>

@@ -1,28 +1,37 @@
 import { useState } from "react";
 
 export function useAPI() {
-
-  const [data, setDeta] = useState({ status: "", msg: "", data: "" });
+  const [reporting, setReporting] = useState({ status: "", msg: "", data: "" });
 
   async function callAPI(data) {
-    
-    setDeta({ status: "sending", msg: "API Call", data: "" });
+    setReporting({ status: "sending", msg: "API Call", data: "" });
 
-    const response = await fetch("http://localhost/react/API/login.php", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      setDeta({ status: "error", msg: "API Error", data: "" });
-    }
-
-    if (response.status === 200) {
-      const mydata = await response.json();
-      if (mydata.token) {
-        setDeta({ status: "ok", msg: "API Done", data: mydata });
+    try {
+      const response = await fetch("http://localhost/react/API/login.php", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        setReporting({ status: "error", msg: "API Error", data: "" });
       }
+
+      if (response.status === 200) {
+        const mydata = await response.json();
+        console.log(mydata);
+        if (mydata.token) {
+          setReporting({ status: "ok", msg: "API Done", data: mydata });
+        } else {
+          setReporting({
+            status: "error",
+            msg: "Invalid username or password",
+            data: "",
+          });
+        }
+      }
+    } catch (error) {
+      setReporting({ status: "error", msg: error, data: "" });
     }
   }
 
-  return { data, setDeta, callAPI };
+  return { reporting, callAPI };
 }

@@ -6,8 +6,7 @@ import Products from "./pages/Products.jsx";
 import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
 
-import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,17 +18,29 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
+        loader: async () => {
+          // call API
+          try {
+            const res = await fetch("https://fakestoreapi.com/products/");
+            const resData = await res.json();
+            return resData;
+          } catch (error) {
+            console.log(error);
+          }
+          // error handaling
+          return [];
+        },
         element: <Products />,
       },
       {
         path: "cart",
         element: <Cart />,
       },
-      {
-        path: "Login",
-        element: <Login />,
-      },
     ],
+  },
+  {
+    path: "Login",
+    element: <Login />,
   },
 ]);
 
