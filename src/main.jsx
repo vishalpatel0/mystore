@@ -7,6 +7,7 @@ import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Product from "./pages/Product.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
         },
         element: <Products />,
       },
+      {
+        path: "product/:product_id",
+        element: <Product />,
+      },
+
       {
         path: "cart",
         element: <Cart />,

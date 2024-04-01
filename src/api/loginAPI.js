@@ -11,6 +11,7 @@ export function useAPI() {
         method: "POST",
         body: JSON.stringify(data),
       });
+      
       if (!response.ok) {
         setReporting({ status: "error", msg: "API Error", data: "" });
       }
