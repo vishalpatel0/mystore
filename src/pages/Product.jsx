@@ -22,9 +22,11 @@ const Product = () => {
   }, [reporting]);
 
   return (
-    <div className="bg-light">
+    <div className="bg-light mt-4">
+            {Object.keys(product).length !== 0 && (
       <div className="container pt-4 card shadow">
-        <div className="row pt-4  ">
+
+          <div className="row pt-4  ">
           <div className="col-md-6 ">
             <img
               className="p-4  d-flex justify-content-center"
@@ -46,7 +48,11 @@ const Product = () => {
             </p>
           </div>
         </div>
+   
+      
       </div>
+         )
+        }
     </div>
   );
 };

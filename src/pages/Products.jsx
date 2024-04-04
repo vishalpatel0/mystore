@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 const Products = () => {
   // use Loader Data like > API value
@@ -52,7 +52,8 @@ const Products = () => {
   return (
     <div className="bg-light">
       <div className="container pt-4">
-        <div className="row">
+        {/* /// filter  */}
+        <div className="row ">
           <div className="col-2">
             <select
               className="form-select"
@@ -84,25 +85,35 @@ const Products = () => {
           </div>
         </div>
         <hr />
+
+        {/* products list  */}
         <div className="row pt-4">
           {
             // api array print
             data?.map((val, index) => (
-              <div key={index} className="col-sm-4">
-                <div
-                  className="shadow m-2  p-3  card"
-                  style={{ height: "450px" }}
-                >
-                  {/* <h1>{val.id}</h1> */}
-                  <b>{val.title}</b>
+              <div key={index} className="col-sm-4 ">
+                <div className="shadow p-1 mb-4 me-3 text-center produsts_list  card">
+                  <Link to={`/product/${val.id}`}>
+                    <div className="m-2  p-3 ">
+                      <div class="title-container ">
+                        <div class="title">{val.title}</div>
+                      </div>
 
-                  <img
-                    className="p-4"
-                    style={{ height: "250px", width: "auto" }}
-                    src={val.image}
-                    alt={val.title}
-                  />
-                  <p>Price : {val.price} Rs.</p>
+                      <img
+                        className="p-4 "
+                        style={{
+                          maxWidth: "100%",
+                          height: "200px",
+                          width: "auto",
+                        }}
+                        src={val.image}
+                        alt={val.title}
+                      />
+                      <br />
+
+                      <p>Price : {val.price} Rs.</p>
+                    </div>
+                  </Link>
 
                   <button class="btn btn-primary" type="submit">
                     Add To Cart

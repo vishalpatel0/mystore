@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             My Store
@@ -23,24 +23,24 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link " aria-current="page" to="#">
+                <NavLink  className={({isActive})=>(isActive ? "active nav-link " : "nav-link")}  to="/">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="products">
+                <NavLink  className={({isActive})=>(isActive ? "active nav-link " : "nav-link")} to="products">
                   Product's
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="cart">
+                <NavLink className={({isActive})=>(isActive ? "active nav-link " : "nav-link")} to="cart">
                   Cart
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="login">
+                <NavLink  className={({isActive})=>(isActive ? "active nav-link " : "nav-link")} to="login">
                   Login
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
