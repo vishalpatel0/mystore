@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProductInfoAPI } from "../api/productInfoAPI";
+
+
 const Product = () => {
   // product id come from URL in object with set key in main file rout path
   const { product_id } = useParams();
 
   // call custom Hook ProductInfoAPI
   const { reporting, CallAPI } = useProductInfoAPI();
-  const [product, setProduct] = useState({});
+
 
   console.log(reporting);
 
@@ -15,6 +17,7 @@ const Product = () => {
     CallAPI(product_id);
   }, []);
 
+  const [product, setProduct] = useState({});
   useEffect(() => {
     if (reporting.data) {
       setProduct(reporting.data);
@@ -46,6 +49,9 @@ const Product = () => {
             <p>
               <b>Price : {product.price} Rs. </b>
             </p>
+            <button class="btn btn-primary" type="submit">
+                    Add To Cart
+            </button>
           </div>
         </div>
    

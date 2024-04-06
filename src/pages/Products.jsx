@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router-dom";
+import { CartUse } from "../context/Cart";
 
 const Products = () => {
+  const { add } = CartUse();
+
   // use Loader Data like > API value
   const MyData = useLoaderData();
 
@@ -95,10 +98,9 @@ const Products = () => {
                 <div className="shadow p-1 mb-4 me-3 text-center produsts_list  card">
                   <Link to={`/product/${val.id}`}>
                     <div className="m-2  p-3 ">
-                      <div class="title-container ">
-                        <div class="title">{val.title}</div>
+                      <div className="title-container ">
+                        <div className="title">{val.title}</div>
                       </div>
-
                       <img
                         className="p-4 "
                         style={{
@@ -110,12 +112,16 @@ const Products = () => {
                         alt={val.title}
                       />
                       <br />
-
                       <p>Price : {val.price} Rs.</p>
                     </div>
                   </Link>
-
-                  <button class="btn btn-primary" type="submit">
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={() => {
+                      add(val.id, 1);
+                    }}
+                  >
                     Add To Cart
                   </button>
                 </div>

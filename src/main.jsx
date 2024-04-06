@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useContext} from "react";
 import ReactDOM from "react-dom/client";
 import Template from "./template/Template.jsx";
 import Home from "./pages/Home.jsx";
@@ -8,6 +8,8 @@ import Login from "./pages/Login.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product from "./pages/Product.jsx";
+import { CartProvider } from "./context/Cart.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,7 +39,6 @@ const router = createBrowserRouter([
         path: "product/:product_id",
         element: <Product />,
       },
-
       {
         path: "cart",
         element: <Cart />,
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+         <RouterProvider router={router} />
+    </CartProvider>
   </React.StrictMode>
 );

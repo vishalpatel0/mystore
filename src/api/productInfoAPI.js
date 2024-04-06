@@ -4,7 +4,9 @@ export function useProductInfoAPI() {
   const [reporting, setReporting] = useState({ status: "", msg: "", data: "" });
 
   async function CallAPI(product_id) {
+    
     setReporting({ status: "APIcalling", msg: "", data: "" });
+    
     try {
       const response = await fetch(
         `https://fakestoreapi.com/products/${product_id}`
